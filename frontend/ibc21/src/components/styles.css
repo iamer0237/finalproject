@@ -1,0 +1,40 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+body {
+  margin: 0px
+}
+
+.webcam-capture__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.take-photo {
+  width: 10rem;
+  height: 2rem;
+  background: gray;
+  color: #fff;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 2rem;
+  background: green;
+  color: #fff;
+  text-align: center;
+  margin-left: 1rem;
+}
+/* input {
+  display: none;
+} */
+/* canvas {
+  display: none;
+} */
