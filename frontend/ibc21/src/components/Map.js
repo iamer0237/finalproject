@@ -4,15 +4,16 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-import icon from "./constants";
+import icon from "./BlueIcon";
 
 const Map = () => {
-  function LocationMarker() {
+  function LocationMarker(handleLocation) {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
-    console.log(position)
+    console.log("position", position)
 
     const map = useMap();
+
 
     useEffect(() => {
       map.locate().on("locationfound", function (e) {
@@ -29,28 +30,27 @@ const Map = () => {
       <Marker position={position} icon={icon}>
 
         <Popup>
-          You are here. <br />
-          Map bbox: <br />
-          <b>Southwest lng</b>: {bbox[0]} <br />
-          <b>Southwest lat</b>: {bbox[1]} <br />
-          <b>Northeast lng</b>: {bbox[2]} <br />
-          <b>Northeast lat</b>: {bbox[3]}
+          Your Location <br />
+        
+          <b>LNG</b>: {bbox[0]} <br />
+          <b>LAT</b>: {bbox[3]}
         </Popup>
       </Marker>
     );
   }
   return (
     <MapContainer
-      center={[49.1951, 16.6068]}
+      center={[48.1951, 11.6068]}
       zoom={13}
       scrollWheelZoom
-      style={{ height: "100vh" }}
+      style={{ height: "70vh"}}
+      
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <LocationMarker />
+      <LocationMarker handle/>
     </MapContainer>
 
   );
