@@ -1,32 +1,21 @@
 import React, { useState } from "react";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import AllReports from "./components/AllReports";
-import GetLocation from "./components/GetLocation";
-import ReportForm from "./components/ReportForm";
-import MapTestMap from "./components/ReportsOnMap";
+import ReportForm from "./components/ReportFormorg";
+import TestMap from "./components/MaptestMap";
 import CupturePhoto from "./components/CupturePhoto";
 import Ticker from "./components/Ticker";
 import TakePhoto from "./components/TakePhoto";
 import CloudApp from "./components/CloudApp";
-import ShowReports from "./components/ShowReports";
-import UploadImage from "./components/UploadImage";
+
 import logo from "./logo.svg";
 import "./App.css";
-import Img from "./components/Img";
-import NewMap from "./components/NewMap";
-import Map from "./components/Map";
 
 const App = () => {
   const [isShown, setIsShown] = useState(false);
-  const [coordinates, setCoordinates] = useState(null);
-  const [reports, setReports] = useState("");
   const ShowReportForm = (event) => {
-    setIsShown((current) => !current);
-  };
-  const ShowPhotoForm = (event) => {
     setIsShown((current) => !current);
   };
   return (
@@ -40,21 +29,26 @@ const App = () => {
       <div className="AppTicker">
         <Ticker />
       </div>
- <div>
-        <button className="report-form" onClick={ShowPhotoForm}>
-          Take a Photo
+      <div>
+        <button className="report-form" onClick={ShowReportForm}>
+          Report an Issue
         </button>
-        <div className="report-form"> {isShown && <UploadImage />}</div>
+        <div className="report-form"> {isShown && <ReportForm />}</div>
       </div>
-      
-     
-<div>
-  <Img />
-</div>
-      
-   <div>
-        <NewMap setReports={setReports} />
+<div><CupturePhoto /></div> 
+      <div>
+        <CloudApp />
+      </div>
+  <div className="report-form">
+        <ReportForm />
       </div> 
+    <div className="reports">
+        <AllReports />
+       </div> 
+      <br />
+      <div>
+        <TestMap />
+      </div>
     </div>
   );
 };

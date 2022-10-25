@@ -1,32 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
+import axios from "axios";
+
 import Map from "./Map";
-function GetLocation() {
+function GetLocation(handleLocation) {
   const [address, setAddress] = useState();
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   const coordinates = [lat, lng];
-
-  useEffect(() => {
-    fetch(
-      `https://geo.ipify.org/api/v1?apiKey=at_QanNF0ptFrXiAYhTHeRYkaqy8JWpy`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setAddress(data);
-        console.log(data);
-
-        setLat(data.location.lat);
-        setLng(data.location.lng);
-      });
-  }, []);
-
+  const [report, setReport] = useState([]);
+      useEffect(() => {
+        axios
+          .get("http://localhost:4000/api/reports")
+          .then((response) => {
+            console.log(response.data);
+            setReport(response.data);
+            console.log(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, []);
   return (
     <div className="App">
-     
-
-   
       <Map coordinates={coordinates} />
+    
     </div>
   );
 }

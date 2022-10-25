@@ -23,10 +23,10 @@ function AllReports() {
 
   return (
     <>
-      <div className="App">
+      <div className="reports">
           <div >
-      {report.map((report) => (
-        <Reports {...report} />
+      {report.map((report,id) => (
+        < Reports {...report} />
       ))}
 
    

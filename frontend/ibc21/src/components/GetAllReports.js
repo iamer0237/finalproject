@@ -1,24 +1,40 @@
-export default function Reports({
+import "../App.css";
+import Marquee from "react-fast-marquee";
+import react, {useState}from "react"
+function Reports({
+ 
   image,
   title,
   name,
-  description,
+  category,
+description,
   coordinates,
+  createdAt,
+  status,
 
   ...rest
-}) {
+}) 
+
+{
+  if(!status){
+    status="Pending"
+  }else{
+    status="Fixed"
+  }
   return (
-    <div className="report">
-      <div >
-        <img src={image} alt={title} />
+    <Marquee className="marquee-container">
+      <div className="report">
+        <div>
+          <img style={{width:"50px"}} src={image} alt={title} />
+        </div>
+        <h2>{title}</h2>
+        <p>{category}</p>
+       <p>{description}</p> 
+        <p>Reported by: {name}</p>
+        <p>Created at: {createdAt}</p>
+        <p>status:{status} </p>
       </div>
-      <h2>{title}</h2>
-      <p>
-        Reported by: {name}
-      </p>
-      <p>
-       {description}
-      </p>
-    </div>
+    </Marquee>
   );
 }
+export default Reports;
