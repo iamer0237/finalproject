@@ -9,8 +9,7 @@ export default function Header() {
   
   return (
     <header>
-      <div>{displayMessage()}</div>
-
+      <div className="Text">{displayMessage()}</div>
     </header>
   );
 }

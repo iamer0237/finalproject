@@ -20,7 +20,6 @@ function LocationMarker({ setMapCoordinates }) {
   const [selectValue, setSelectValue] = useState("");
 
   const map = useMap();
-  console.log(position);
 
   useEffect(() => {
     map.locate().on("locationfound", function (e) {

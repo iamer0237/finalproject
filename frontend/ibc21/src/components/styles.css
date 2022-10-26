@@ -3,7 +3,8 @@ body {
   margin: 0px
 }
 .form {
-  max-width: fit-content;
+  cursor: pointer;
+  max-width: min-content;
 }
 .ticker {
   height: auto;
@@ -13,7 +14,7 @@ background-color: rgb(251, 61, 8);
 .webcam-capture__content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: fit-content;
   align-items: center;
   justify-content: center;
 }
