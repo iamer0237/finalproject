@@ -18,7 +18,6 @@ import "./App.css";
 import Img from "./components/Img";
 import NewMap from "./components/NewMap";
 import Map from "./components/Map";
-
 const App = () => {
   const [isShown, setIsShown] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
@@ -39,22 +38,15 @@ const App = () => {
       </div>
       <div className="AppTicker">
         <Ticker />
+        <Ticker />
       </div>
- <div>
-        <button className="report-form" onClick={ShowPhotoForm}>
-          Take a Photo
-        </button>
-        <div className="report-form"> {isShown && <UploadImage />}</div>
+      <div className="report-form">
+        <ReportForm />
       </div>
-      
-     
-<div>
-  <Img />
-</div>
-      
-   <div>
+
+      <div className="leaflet-container">
         <NewMap setReports={setReports} />
-      </div> 
+      </div>
     </div>
   );
 };

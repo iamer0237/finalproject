@@ -8,24 +8,40 @@ import "leaflet/dist/leaflet.css";
 import LocationMarker from "./LocationMarker";
 import ReportOnMap from "./ReportsOnMap";
 import UploadImage from "./UploadImage";
+import NewMap from "./NewMap";
 
-const ReportForm = (uploadedImage) => {
+const ReportForm = () => {
+  const [file, setFile] = useState("");
+
   const [inputs, setInputs] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [image, setImage] = useState("");
 
   const handleSubmit = async (e) => {
-    console.log(coordinates);
+    console.log(file);
     e.preventDefault();
     try {
       const data = inputs;
       data.coordinates = [coordinates.lat, coordinates.lng];
-      data.image = uploadedImage;
+      data.image = image;
       const { error } = await createReport(data);
       if (error) throw error;
     } catch (err) {
       console.error(err);
     }
+  };
+  const previewFiles = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    previewFiles(file);
   };
   const handleChange = (e) => {
     const name = e.target.name;
@@ -35,9 +51,6 @@ const ReportForm = (uploadedImage) => {
   const handleSelect = (e) => {
     setInputs((prevState) => ({ ...prevState, category: e.value }));
   };
-
-  console.log(inputs);
-
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
@@ -53,6 +66,14 @@ const ReportForm = (uploadedImage) => {
           />
           <LocationMarker setMapCoordinates={setCoordinates} />
         </MapContainer>
+        <label htmlFor="fileInput"></label>
+        <input 
+          type="file"
+          accept="image/*" capture
+          id="fileInput"
+          onChange={(e) => handleImageChange(e)}
+          required
+        />
         <br />
         <label>
           <div>Name**:</div>
@@ -90,7 +111,6 @@ const ReportForm = (uploadedImage) => {
           />
         </label>
         <br />
-
         <label>
           <div>Category**:</div>
           <div>
@@ -112,7 +132,6 @@ const ReportForm = (uploadedImage) => {
         </label>
         <label>
           <div> Description**:</div>
-
           <textarea
             value={inputs.description}
             className="textarea"
@@ -121,7 +140,7 @@ const ReportForm = (uploadedImage) => {
           ></textarea>
         </label>
         <button>Submit Report</button>
-        <p>Fiels marked with ** are required, others optional</p>
+        <p>Fields marked with ** are required, others optional</p>
       </form>
     </>
   );

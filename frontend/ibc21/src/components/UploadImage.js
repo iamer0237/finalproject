@@ -4,7 +4,7 @@ import axios from "axios";
 import ReportForm from "./ReportForm";
 import "../App.css";
 
-const UploadImage = (setNewImage) => {
+const UploadImage = () => {
   const [file, setFile] = useState("");
   const [image, setImage] = useState("");
   const [uploadedImage, setUploadedImage] = useState("");
@@ -55,9 +55,7 @@ const UploadImage = (setNewImage) => {
           <button value="Upload" className="btn btn-primary">Upload</button>
         </form>
       </div>
-      <ReportForm uploadedImg={uploadedImage} />
-      
-    
+ 
     </>
   );
 };
